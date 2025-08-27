@@ -8,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f4f6f9;
+      background: linear-gradient(135deg, pink 0%, aliceblue 55%, lightsteelblue 100%);
       color: #333;
     }
     header {
@@ -30,7 +30,8 @@
       height: 60px;
     }
     #logo2 {
-      height: 75px;
+      height: 150px;
+      width : 150px;
     }
     h1 {
       font-size: 22px;
@@ -93,14 +94,14 @@
     .day-group {
       margin-bottom: 25px;
       padding: 15px;
-      background: #f9fbff;
+      background: aliceblue;
       border-left: 4px solid red;
       border-radius: 8px;
     }
     .entry {
       margin-bottom: 12px;
       padding: 12px;
-      background: #fff;
+      background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       transition: transform 0.3s, box-shadow 0.3s;
@@ -112,33 +113,13 @@
     .entry strong {
       color: red;
     }
-    .logo-placeholder {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-      transition: transform 0.3s;
-    }
-    .logo-placeholder:hover {
-      transform: scale(1.1);
-    }
-    #logo2-placeholder {
-      height: 75px;
-      width: 75px;
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-placeholder" id="logo1">LOGO 1</div>
-    <h1>Johns Academy-Student Information </h1>
-    <div class="logo-placeholder" id="logo2-placeholder">LOGO 2</div>
+    <img id="logo1" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_1.PNG" alt="Logo 1">
+    <h1>Student Information Charter</h1>
+    <img id="logo2" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_2.png" alt="Logo 2">
   </header>
 
   <div class="container">
@@ -175,14 +156,12 @@
   </div>
 
   <script>
-    // Store entries in memory instead of using external API
     let entries = [];
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzlt9GBvbj-tq6iQiiqI6PVrZVPSKnz9LxstxzpvTxGfJy6Y5HWMmnC0j0eXkDgQuxOUg/exec";
 
     const form = document.getElementById('studentForm');
     const entriesDiv = document.getElementById('entries');
-
-    // Replace this URL with your Google Apps Script Web App URL
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzlt9GBvbj-tq6iQiiqI6PVrZVPSKnz9LxstxzpvTxGfJy6Y5HWMmnC0j0eXkDgQuxOUg/exec";
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -201,13 +180,7 @@
         "Work Finished": document.getElementById('workFinished').value
       };
 
-      console.log('Submitting entry:', entry);
-      console.log('Script URL:', scriptURL);
-
-      // Check if URL is set
       if (scriptURL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
-        console.error('Google Apps Script URL not set');
-        alert('Please update the scriptURL in the HTML file with your Google Apps Script Web App URL');
         button.textContent = originalText;
         button.disabled = false;
         return;
@@ -221,39 +194,22 @@
       formBody.append('Subject', entry.Subject);
       formBody.append('Work Finished', entry['Work Finished']);
 
-      console.log('Form data being sent:');
-      for (let [key, value] of formBody.entries()) {
-        console.log(key, value);
-      }
-
       fetch(scriptURL, {
         method: 'POST',
         body: formBody,
         mode: 'cors'
       })
       .then(response => {
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
         return response.text();
       })
       .then(result => {
-        console.log('Success response:', result);
-        
         if (result.includes('Error:')) {
           throw new Error(result);
         }
-        
-        // Store entry in memory for display
         entries.push(entry);
-        
-        // Add to display
         addEntry(entry);
-        
-        // Reset form
         form.reset();
         document.getElementById('date').valueAsDate = new Date();
-        
-        // Show success feedback
         button.textContent = 'Submitted!';
         button.style.background = 'green';
         setTimeout(() => {
@@ -263,21 +219,13 @@
         }, 1500);
       })
       .catch(error => {
-        console.error('Error details:', error);
-        
-        // Still add to local display even if Google Sheets fails
         entries.push(entry);
         addEntry(entry);
         form.reset();
         document.getElementById('date').valueAsDate = new Date();
-        
-        // Show error feedback with more details
         button.textContent = 'Error - Check Console';
         button.style.background = 'orange';
-        
-        // Show error message to user
         alert('Error submitting to Google Sheets: ' + error.message + '\n\nThe entry has been saved locally. Check the browser console for more details.');
-        
         setTimeout(() => {
           button.textContent = originalText;
           button.style.background = 'red';
@@ -293,11 +241,8 @@
         dayGroup.className = 'day-group';
         dayGroup.id = 'day-' + entry.Date;
         dayGroup.innerHTML = `<h3>${formatDate(entry.Date)}</h3>`;
-        
-        // Insert in chronological order
         insertDayGroup(dayGroup, entry.Date);
       }
-
       const div = document.createElement('div');
       div.className = 'entry';
       div.innerHTML = `
@@ -311,7 +256,6 @@
     function insertDayGroup(newGroup, newDate) {
       const existingGroups = entriesDiv.querySelectorAll('.day-group');
       let inserted = false;
-      
       for (let group of existingGroups) {
         const groupDate = group.id.replace('day-', '');
         if (newDate > groupDate) {
@@ -320,7 +264,6 @@
           break;
         }
       }
-      
       if (!inserted) {
         entriesDiv.appendChild(newGroup);
       }
@@ -336,7 +279,6 @@
       });
     }
 
-    // Set today's date as default
     document.getElementById('date').valueAsDate = new Date();
   </script>
 </body>
