@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Charter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header img {
+      height: 60px;
+      transition: transform 0.3s;
+    }
+    header img:hover {
+      transform: scale(1.1);
+    }
+    #logo1 {
+      height: 60px;
+    }
+    #logo2 {
+      height: 75px;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0;
+      text-align: center;
+      flex: 1;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px 20px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: border 0.3s, box-shadow 0.3s;
+      box-sizing: border-box;
+    }
+    input:focus, textarea:focus {
+      border-color: red;
+      box-shadow: 0 0 6px rgba(255,0,0,0.3);
+      outline: none;
+    }
+    button {
+      grid-column: span 2;
+      padding: 12px;
+      background: red;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: darkred;
+      transform: translateY(-2px);
+    }
+    .entries {
+      margin-top: 30px;
+    }
+    .day-group {
+      margin-bottom: 25px;
+      padding: 15px;
+      background: #f9fbff;
+      border-left: 4px solid red;
+      border-radius: 8px;
+    }
+    .entry {
+      margin-bottom: 12px;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .entry:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+    .entry strong {
+      color: red;
+    }
+    .logo-placeholder {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      transition: transform 0.3s;
+    }
+    .logo-placeholder:hover {
+      transform: scale(1.1);
+    }
+    #logo2-placeholder {
+      height: 75px;
+      width: 75px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-placeholder" id="logo1">LOGO 1</div>
+    <h1>Johns Academy-Student Information </h1>
+    <div class="logo-placeholder" id="logo2-placeholder">LOGO 2</div>
+  </header>
+
+  <div class="container">
+    <h2>Enter Student Work</h2>
+    <form id="studentForm">
+      <div>
+        <label>Student Name:</label>
+        <input type="text" id="studentName" required>
+      </div>
+      <div>
+        <label>Grade:</label>
+        <input type="text" id="grade" required>
+      </div>
+      <div>
+        <label>Section:</label>
+        <input type="text" id="section" required>
+      </div>
+      <div>
+        <label>Date:</label>
+        <input type="date" id="date" required>
+      </div>
+      <div>
+        <label>Subject:</label>
+        <input type="text" id="subject" required>
+      </div>
+      <div style="grid-column: span 2;">
+        <label>Work Finished:</label>
+        <textarea id="workFinished" rows="3" required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="entries" id="entries"></div>
+  </div>
+
+  <script>
+    // Store entries in memory instead of using external API
+    let entries = [];
+
+    const form = document.getElementById('studentForm');
+    const entriesDiv = document.getElementById('entries');
+
+    // Replace this URL with your Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzlt9GBvbj-tq6iQiiqI6PVrZVPSKnz9LxstxzpvTxGfJy6Y5HWMmnC0j0eXkDgQuxOUg/exec";
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const button = form.querySelector('button');
+      const originalText = button.textContent;
+      button.textContent = 'Submitting...';
+      button.disabled = true;
+      
+      const entry = {
+        Date: document.getElementById('date').value,
+        Grade: document.getElementById('grade').value,
+        "Student Name": document.getElementById('studentName').value,
+        Section: document.getElementById('section').value,
+        Subject: document.getElementById('subject').value,
+        "Work Finished": document.getElementById('workFinished').value
+      };
+
+      console.log('Submitting entry:', entry);
+      console.log('Script URL:', scriptURL);
+
+      // Check if URL is set
+      if (scriptURL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+        console.error('Google Apps Script URL not set');
+        alert('Please update the scriptURL in the HTML file with your Google Apps Script Web App URL');
+        button.textContent = originalText;
+        button.disabled = false;
+        return;
+      }
+
+      const formBody = new FormData();
+      formBody.append('Date', entry.Date);
+      formBody.append('Student Name', entry['Student Name']);
+      formBody.append('Grade', entry.Grade);
+      formBody.append('Section', entry.Section);
+      formBody.append('Subject', entry.Subject);
+      formBody.append('Work Finished', entry['Work Finished']);
+
+      console.log('Form data being sent:');
+      for (let [key, value] of formBody.entries()) {
+        console.log(key, value);
+      }
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: formBody,
+        mode: 'cors'
+      })
+      .then(response => {
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        return response.text();
+      })
+      .then(result => {
+        console.log('Success response:', result);
+        
+        if (result.includes('Error:')) {
+          throw new Error(result);
+        }
+        
+        // Store entry in memory for display
+        entries.push(entry);
+        
+        // Add to display
+        addEntry(entry);
+        
+        // Reset form
+        form.reset();
+        document.getElementById('date').valueAsDate = new Date();
+        
+        // Show success feedback
+        button.textContent = 'Submitted!';
+        button.style.background = 'green';
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = 'red';
+          button.disabled = false;
+        }, 1500);
+      })
+      .catch(error => {
+        console.error('Error details:', error);
+        
+        // Still add to local display even if Google Sheets fails
+        entries.push(entry);
+        addEntry(entry);
+        form.reset();
+        document.getElementById('date').valueAsDate = new Date();
+        
+        // Show error feedback with more details
+        button.textContent = 'Error - Check Console';
+        button.style.background = 'orange';
+        
+        // Show error message to user
+        alert('Error submitting to Google Sheets: ' + error.message + '\n\nThe entry has been saved locally. Check the browser console for more details.');
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = 'red';
+          button.disabled = false;
+        }, 3000);
+      });
+    });
+
+    function addEntry(entry) {
+      let dayGroup = document.getElementById('day-' + entry.Date);
+      if (!dayGroup) {
+        dayGroup = document.createElement('div');
+        dayGroup.className = 'day-group';
+        dayGroup.id = 'day-' + entry.Date;
+        dayGroup.innerHTML = `<h3>${formatDate(entry.Date)}</h3>`;
+        
+        // Insert in chronological order
+        insertDayGroup(dayGroup, entry.Date);
+      }
+
+      const div = document.createElement('div');
+      div.className = 'entry';
+      div.innerHTML = `
+        <strong>${entry["Student Name"]}</strong> (Grade ${entry.Grade}, Section ${entry.Section})<br>
+        <em>${entry.Subject}</em><br>
+        ${entry["Work Finished"]}
+      `;
+      dayGroup.appendChild(div);
+    }
+
+    function insertDayGroup(newGroup, newDate) {
+      const existingGroups = entriesDiv.querySelectorAll('.day-group');
+      let inserted = false;
+      
+      for (let group of existingGroups) {
+        const groupDate = group.id.replace('day-', '');
+        if (newDate > groupDate) {
+          entriesDiv.insertBefore(newGroup, group);
+          inserted = true;
+          break;
+        }
+      }
+      
+      if (!inserted) {
+        entriesDiv.appendChild(newGroup);
+      }
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    // Set today's date as default
+    document.getElementById('date').valueAsDate = new Date();
+  </script>
+</body>
+</html>
