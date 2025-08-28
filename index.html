@@ -1,292 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Information Charter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, pink 0%, aliceblue 55%, lightsteelblue 100%);
-      color: #333;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 30px;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    header img {
-      height: 60px;
-      transition: transform 0.3s;
-    }
-    header img:hover {
-      transform: scale(1.1);
-    }
-    #logo1 {
-      height: 60px;
-    }
-    #logo2 {
-      height: 150px;
-      width : 150px;
-    }
-    h1 {
-      font-size: 22px;
-      margin: 0;
-      text-align: center;
-      flex: 1;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #444;
-    }
-    form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px 20px;
-    }
-    label {
-      font-weight: bold;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      transition: border 0.3s, box-shadow 0.3s;
-      box-sizing: border-box;
-    }
-    input:focus, textarea:focus {
-      border-color: red;
-      box-shadow: 0 0 6px rgba(255,0,0,0.3);
-      outline: none;
-    }
-    button {
-      grid-column: span 2;
-      padding: 12px;
-      background: red;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    button:hover {
-      background: darkred;
-      transform: translateY(-2px);
-    }
-    .entries {
-      margin-top: 30px;
-    }
-    .day-group {
-      margin-bottom: 25px;
-      padding: 15px;
-      background: aliceblue;
-      border-left: 4px solid red;
-      border-radius: 8px;
-    }
-    .entry {
-      margin-bottom: 12px;
-      padding: 12px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .entry:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-    }
-    .entry strong {
-      color: red;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Information Charter</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, pink 0%, aliceblue 55%, lightsteelblue 100%);
+  color: black;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+header img {
+  height: 60px;
+  transition: transform 0.3s;
+}
+header img:hover {
+  transform: scale(1.1);
+}
+#logo1 {
+  height: 60px;
+}
+#logo2 {
+  height: 150px;
+  width: 150px;
+}
+h1 {
+  font-size: 22px;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: dimgray;
+}
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 20px;
+}
+label {
+  font-weight: bold;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  transition: border 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: red;
+  box-shadow: 0 0 6px rgba(255,0,0,0.3);
+  outline: none;
+}
+button {
+  grid-column: span 2;
+  padding: 12px;
+  background: red;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover {
+  background: darkred;
+  transform: translateY(-2px);
+}
+.entries {
+  margin-top: 30px;
+}
+.day-group {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: aliceblue;
+  border-left: 4px solid red;
+  border-radius: 8px;
+}
+.entry {
+  margin-bottom: 12px;
+  padding: 12px;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+.entry strong {
+  color: red;
+}
+</style>
 </head>
 <body>
-  <header>
+<header>
   <a href="https://johnsacademy.in" target="_blank">
-    <img id="logo1" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_1.PNG" alt="Logo 1">
+    <img id="logo1" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_1.PNG" alt="Logo 1" />
   </a>
   <h1>Student Information Charter</h1>
   <a href="https://web-bros-fqzz.b12sites.com" target="_blank">
-    <img id="logo2" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_2.png" alt="Logo 2">
+    <img id="logo2" src="https://raw.githubusercontent.com/Thalafan77/Student-information/main/Logo_2.png" alt="Logo 2" />
   </a>
 </header>
+<div class="container">
+  <h2>Enter Student Work</h2>
+  <form id="studentForm">
+    <div>
+      <label>Student Name:</label>
+      <input type="text" id="studentName" required />
+    </div>
+    <div>
+      <label>Grade:</label>
+      <select id="grade" required>
+        <option value="" disabled selected>Select Grade</option>
+        <option value="UKG">UKG</option>
+        <option value="1">Grade 1</option>
+        <option value="2">Grade 2</option>
+        <option value="3">Grade 3</option>
+        <option value="4">Grade 4</option>
+        <option value="5">Grade 5</option>
+        <option value="6">Grade 6</option>
+        <option value="7">Grade 7</option>
+        <option value="8">Grade 8</option>
+        <option value="9">Grade 9</option>
+        <option value="10">Grade 10</option>
+        <option value="11">Grade 11</option>
+        <option value="12">Grade 12</option>
+      </select>
+    </div>
+    <div>
+      <label>Section:</label>
+      <input type="text" id="section" required />
+    </div>
+    <div>
+      <label>Date:</label>
+      <input type="date" id="date" required />
+    </div>
+    <div>
+      <label>Subject:</label>
+      <input type="text" id="subject" required />
+    </div>
+    <div>
+      <label>Chapter No.:</label>
+      <input type="number" id="chapterNo" required />
+    </div>
+    <div>
+      <label>Chapter Name:</label>
+      <input type="text" id="chapterName" required />
+    </div>
+    <div style="grid-column: span 2;">
+      <label>Work Finished:</label>
+      <textarea id="workFinished" rows="3" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="entries" id="entries"></div>
+</div>
 
+<script>
+let entries = [];
+const scriptURL = "https://script.google.com/macros/s/AKfycby50h8rOz9R4SiZwHCQXyX7Em_7Q8yWhWWRgwhjjlah/dev";
+const form = document.getElementById('studentForm');
+const entriesDiv = document.getElementById('entries');
 
-  <div class="container">
-    <h2>Enter Student Work</h2>
-    <form id="studentForm">
-      <div>
-        <label>Student Name:</label>
-        <input type="text" id="studentName" required>
-      </div>
-      <div>
-        <label>Grade:</label>
-        <input type="text" id="grade" required>
-      </div>
-      <div>
-        <label>Section:</label>
-        <input type="text" id="section" required>
-      </div>
-      <div>
-        <label>Date:</label>
-        <input type="date" id="date" required>
-      </div>
-      <div>
-        <label>Subject:</label>
-        <input type="text" id="subject" required>
-      </div>
-      <div style="grid-column: span 2;">
-        <label>Work Finished:</label>
-        <textarea id="workFinished" rows="3" required></textarea>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const button = form.querySelector('button');
+  const originalText = button.textContent;
+  button.textContent = 'Submitting...';
+  button.disabled = true;
 
-    <div class="entries" id="entries"></div>
-  </div>
+  const entry = {
+    Date: document.getElementById('date').value,
+    Grade: document.getElementById('grade').value,
+    "Student Name": document.getElementById('studentName').value,
+    Section: document.getElementById('section').value,
+    Subject: document.getElementById('subject').value,
+    "Chapter No.": document.getElementById('chapterNo').value,
+    "Chapter Name": document.getElementById('chapterName').value,
+    "Work Finished": document.getElementById('workFinished').value
+  };
 
-  <script>
-    let entries = [];
+  const formBody = new FormData();
+  for (const key in entry) {
+    formBody.append(key, entry[key]);
+  }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzlt9GBvbj-tq6iQiiqI6PVrZVPSKnz9LxstxzpvTxGfJy6Y5HWMmnC0j0eXkDgQuxOUg/exec";
-
-    const form = document.getElementById('studentForm');
-    const entriesDiv = document.getElementById('entries');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      
-      const button = form.querySelector('button');
-      const originalText = button.textContent;
-      button.textContent = 'Submitting...';
-      button.disabled = true;
-      
-      const entry = {
-        Date: document.getElementById('date').value,
-        Grade: document.getElementById('grade').value,
-        "Student Name": document.getElementById('studentName').value,
-        Section: document.getElementById('section').value,
-        Subject: document.getElementById('subject').value,
-        "Work Finished": document.getElementById('workFinished').value
-      };
-
-      if (scriptURL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+  fetch(scriptURL, { method: 'POST', body: formBody, mode: 'cors' })
+    .then(res => res.text())
+    .then(result => {
+      if (result.includes('Error:')) throw new Error(result);
+      entries.push(entry);
+      addEntry(entry);
+      form.reset();
+      document.getElementById('date').valueAsDate = new Date();
+      button.textContent = 'Submitted!';
+      button.style.background = 'green';
+      setTimeout(() => {
         button.textContent = originalText;
+        button.style.background = 'red';
         button.disabled = false;
-        return;
-      }
-
-      const formBody = new FormData();
-      formBody.append('Date', entry.Date);
-      formBody.append('Student Name', entry['Student Name']);
-      formBody.append('Grade', entry.Grade);
-      formBody.append('Section', entry.Section);
-      formBody.append('Subject', entry.Subject);
-      formBody.append('Work Finished', entry['Work Finished']);
-
-      fetch(scriptURL, {
-        method: 'POST',
-        body: formBody,
-        mode: 'cors'
-      })
-      .then(response => {
-        return response.text();
-      })
-      .then(result => {
-        if (result.includes('Error:')) {
-          throw new Error(result);
-        }
-        entries.push(entry);
-        addEntry(entry);
-        form.reset();
-        document.getElementById('date').valueAsDate = new Date();
-        button.textContent = 'Submitted!';
-        button.style.background = 'green';
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = 'red';
-          button.disabled = false;
-        }, 1500);
-      })
-      .catch(error => {
-        entries.push(entry);
-        addEntry(entry);
-        form.reset();
-        document.getElementById('date').valueAsDate = new Date();
-        button.textContent = 'Error - Check Console';
-        button.style.background = 'orange';
-        alert('Error submitting to Google Sheets: ' + error.message + '\n\nThe entry has been saved locally. Check the browser console for more details.');
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.style.background = 'red';
-          button.disabled = false;
-        }, 3000);
-      });
+      }, 1500);
+    })
+    .catch(error => {
+      entries.push(entry);
+      addEntry(entry);
+      form.reset();
+      document.getElementById('date').valueAsDate = new Date();
+      button.textContent = 'Error';
+      button.style.background = 'orange';
+      alert('Error submitting to Google Sheets: ' + error.message);
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = 'red';
+        button.disabled = false;
+      }, 3000);
     });
+});
 
-    function addEntry(entry) {
-      let dayGroup = document.getElementById('day-' + entry.Date);
-      if (!dayGroup) {
-        dayGroup = document.createElement('div');
-        dayGroup.className = 'day-group';
-        dayGroup.id = 'day-' + entry.Date;
-        dayGroup.innerHTML = `<h3>${formatDate(entry.Date)}</h3>`;
-        insertDayGroup(dayGroup, entry.Date);
-      }
-      const div = document.createElement('div');
-      div.className = 'entry';
-      div.innerHTML = `
-        <strong>${entry["Student Name"]}</strong> (Grade ${entry.Grade}, Section ${entry.Section})<br>
-        <em>${entry.Subject}</em><br>
-        ${entry["Work Finished"]}
-      `;
-      dayGroup.appendChild(div);
+function addEntry(entry) {
+  let dayGroup = document.getElementById('day-' + entry.Date);
+  if (!dayGroup) {
+    dayGroup = document.createElement('div');
+    dayGroup.className = 'day-group';
+    dayGroup.id = 'day-' + entry.Date;
+    dayGroup.innerHTML = `<h3>${formatDate(entry.Date)}</h3>`;
+    insertDayGroup(dayGroup, entry.Date);
+  }
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.innerHTML = `
+    <strong>${entry["Student Name"]}</strong> (Grade ${entry.Grade}, Section ${entry.Section})<br>
+    <em>${entry.Subject}</em> - Chapter ${entry["Chapter No."]}: ${entry["Chapter Name"]}<br>
+    ${entry["Work Finished"]}
+  `;
+  dayGroup.appendChild(div);
+}
+
+function insertDayGroup(newGroup, newDate) {
+  const existingGroups = entriesDiv.querySelectorAll('.day-group');
+  let inserted = false;
+  for (let group of existingGroups) {
+    const groupDate = group.id.replace('day-', '');
+    if (newDate > groupDate) {
+      entriesDiv.insertBefore(newGroup, group);
+      inserted = true;
+      break;
     }
+  }
+  if (!inserted) {
+    entriesDiv.appendChild(newGroup);
+  }
+}
 
-    function insertDayGroup(newGroup, newDate) {
-      const existingGroups = entriesDiv.querySelectorAll('.day-group');
-      let inserted = false;
-      for (let group of existingGroups) {
-        const groupDate = group.id.replace('day-', '');
-        if (newDate > groupDate) {
-          entriesDiv.insertBefore(newGroup, group);
-          inserted = true;
-          break;
-        }
-      }
-      if (!inserted) {
-        entriesDiv.appendChild(newGroup);
-      }
-    }
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
 
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-    }
-
-    document.getElementById('date').valueAsDate = new Date();
-  </script>
+document.getElementById('date').valueAsDate = new Date();
+</script>
 </body>
 </html>
-
-
